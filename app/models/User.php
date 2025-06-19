@@ -61,6 +61,40 @@ class User {
         }
       }
     }
+
+   public function createUser($username, $password, $password2) {
+
+     //check if passwords entered match
+     if ($password != $password2) {
+       $_SESSION['pass_mismatch'] = true;
+       header("Location: /create");
+     } 
+
+     //check password is at least 8 characters long, lower and upper case, and contains a number
+     $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/';
+     if (!preg_match($pattern, $password)) {
+       $_SESSION['pass_insecure'] = true;
+       header("Location: /create");
+     }
+
+     $db = db_connect();
+     $username = strtolower($username);
+     //check if user already exists
+     $statement = $db->prepare("SELECT * FROM users WHERE username = ?");  
+     $statement->execute([$username]);
+     if ($statement->rowCount() > 0) {
+       $_SESSION['user_exists'] = true; 
+       header("Location: /create");
+     }
+
+     else {  //create new user
+       $password = password_hash($password, PASSWORD_DEFAULT); 
+       $statement = $db->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+       $statement->execute([$username, $password]);
+       echo "User created successfully";  
+       echo "<br><a href='/login'>Click here to login</a>";
+     }
+   }
 }
       
 		// $db = db_connect();

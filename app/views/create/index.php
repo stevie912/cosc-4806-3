@@ -3,7 +3,7 @@
 
     <h1>Create new user</h1>
 
-    <form action="/create.php" method="post">
+    <form action="/create/new_user" method="post">
       <label for="username">New username:</label>
       <br>
       <input type="text" id="username" name="username">
