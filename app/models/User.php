@@ -46,8 +46,9 @@ class User {
 
         //check if password is correct
         if (password_verify($password, $valid_password)) {
-          $_SESSION['authenticated'] = true;
+          $_SESSION['auth'] = true;
           header("Location: /home");
+          die;
         } else {
           if (!isset($_SESSION['failed_attempts'])) {
             $_SESSION['failed_attempts'] = 1;

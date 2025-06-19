@@ -2,6 +2,15 @@
 if (isset($_SESSION['auth']) == 1) {
     header('Location: /home');
 }
+
+if (isset($_SESSION['failed_attempts'])) {
+echo "This is unsuccessful attempt number " . $_SESSION['failed_attempts'];
+}
+
+if (isset($_SESSION['no_user'])) {
+echo "No such user exists";
+unset($_SESSION['no_user']);  
+}
 ?>
 
 <!DOCTYPE html>
