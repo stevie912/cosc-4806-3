@@ -1,23 +1,3 @@
-<?php
-if (isset($_SESSION['auth']) == 1) {    //user is logged in
-    header('Location: /home');
-}
-
-if (isset($_SESSION['failed_attempts']) == 4) {    //lockout after 3 failed login attempts
-    unset($_SESSION['failed_attempts']);
-    header('Location: /lockout');
-}
-
-if (isset($_SESSION['failed_attempts'])) {
-    echo "This is unsuccessful attempt number " . $_SESSION['failed_attempts'];
-}
-
-if (isset($_SESSION['no_user'])) {
-    echo "No such user exists";
-    unset($_SESSION['no_user']);  
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -29,3 +9,7 @@ if (isset($_SESSION['no_user'])) {
     <meta name="mobile-web-app-capable" content="yes">
 </head>
 <body>
+
+<h1>You have been locked out</h1>
+    <p>you will be returned to the login screen after 60 seconds</p>
+</body>
