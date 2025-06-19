@@ -47,6 +47,8 @@ class User {
         //check if password is correct
         if (password_verify($password, $valid_password)) {
           $_SESSION['auth'] = true;
+          $statement = $db->prepare("INSERT INTO logins (username, password, time, result) VALUES (?, ?, ?, ?)");
+          $statement->execute([$username, $password, date("Y-m-d H:i:s"), $_SESSION['auth']]);
           header("Location: /home");
           die;
         } else {
