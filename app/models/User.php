@@ -57,7 +57,8 @@ class User {
           } else {
             $_SESSION['failed_attempts'] += 1;
           }
-
+          $statement = $db->prepare("INSERT INTO logins (username, password, time, result) VALUES (?, ?, ?, ?)");
+          $statement->execute([$username, $password, date("Y-m-d H:i:s"), $_SESSION['auth']]);
           header("Location: /login");
 
         }
