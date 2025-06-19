@@ -32,6 +32,8 @@ class User {
 
       if ($statement->rowCount() == 0) {  //user not found
         $_SESSION['no_user'] = true;
+        $statement = $db->prepare("INSERT INTO logins (username, password, time, result) VALUES (?, ?, ?, ?)");
+        $statement->execute([$username, $password, date("Y-m-d H:i:s"), 0]);
         header("Location: /login");
 
       }
@@ -48,7 +50,7 @@ class User {
         if (password_verify($password, $valid_password)) {
           $_SESSION['auth'] = true;
           $statement = $db->prepare("INSERT INTO logins (username, time, result) VALUES (?,  ?, ?)");
-          $statement->execute([$username,  date("Y-m-d H:i:s"), $_SESSION['auth']]);
+          $statement->execute([$username,  date("Y-m-d H:i:s"), 1]);
           header("Location: /home");
           die;
         } else {
@@ -58,7 +60,7 @@ class User {
             $_SESSION['failed_attempts'] += 1;
           }
           $statement = $db->prepare("INSERT INTO logins (username, password, time, result) VALUES (?, ?, ?, ?)");
-          $statement->execute([$username, $password, date("Y-m-d H:i:s"), $_SESSION['auth']]);
+          $statement->execute([$username, $password, date("Y-m-d H:i:s"), 0]);
           header("Location: /login");
 
         }
