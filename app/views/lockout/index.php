@@ -10,6 +10,6 @@
 </head>
 <body>
 
-<h1>You have been locked out</h1>
-    <p>you will be returned to the login screen after 60 seconds</p>
+<h1 class="display5 text-center">You have been locked out</h1>
+    <p class="lead text-center">you will be returned to the login screen after 60 seconds</p>
 </body>

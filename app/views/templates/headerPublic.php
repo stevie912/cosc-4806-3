@@ -3,10 +3,11 @@ if (isset($_SESSION['auth']) == 1) {    //user is logged in
     header('Location: /home');
 }
 
-if (isset($_SESSION['failed_attempts']) == 4) {    //lockout after 3 failed login attempts
-    unset($_SESSION['failed_attempts']);
-    header('Location: /lockout');
-}
+if ($_SESSION['failed_attempts'] > 2) {    //lockout after 3 failed login attempts
+  unset($_SESSION['failed_attempts']);
+  header('Location: /lockout');
+  die;
+}  
 
 if (isset($_SESSION['failed_attempts'])) {
     echo "This is unsuccessful attempt number " . $_SESSION['failed_attempts'];
