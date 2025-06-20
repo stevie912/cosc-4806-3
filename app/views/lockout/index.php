@@ -11,10 +11,10 @@
 <body>
 
     <h1 class="display5 text-center">You have been locked out</h1>
-    <p class="lead text-center">you will be returned to the login screen after <span id="counter">60</span>  seconds</p>
+    <p class="lead text-center">you will be returned to the login screen after <span id="counter">60</span> seconds</p>
 
     <script>
-        let timeLeft = 6;
+        let timeLeft = 60;
         const counter = document.getElementById('counter');
         
         const timer = setInterval(() => {
@@ -25,12 +25,6 @@
                 window.location.href = "/login";
             }
         }, 1000);
-
-        // const timer = setTimeout(redirect, 6000);
-        
-        // function redirect() {
-        //     window.location.href = "/login";
-        // }
         
     </script>
 </body>

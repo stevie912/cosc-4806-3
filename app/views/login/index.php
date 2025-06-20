@@ -25,7 +25,8 @@
 		</fieldset>
 		</form> 
 			<br>
-			<a href="/create"><h4>Create new user</h4></a>
+			<a href="/create"><h5 class="text-center">Create new user</h5></a>
+			<br>
 	</div>
 </div>
     <?php require_once 'app/views/templates/footer.php' ?>

@@ -1,14 +1,14 @@
 <?php
 if (isset($_SESSION['pass_mismatch'])) {
-  echo "Passwords do not match";
+  echo "Passwords do not match<br>";
   unset($_SESSION['pass_mismatch']);
 }
 if (isset($_SESSION['user_exists'])) {
-  echo "User already exists"; 
+  echo "User already exists<br>"; 
   unset($_SESSION['user_exists']);
 }
 if (isset($_SESSION['pass_insecure'])) {
-  echo "Password must contain at least 8 characters, lower and upper case, and a number";
+  echo "Password must contain at least 8 characters, lower and upper case, and a number<br>";
   unset($_SESSION['pass_insecure']);
 }
 

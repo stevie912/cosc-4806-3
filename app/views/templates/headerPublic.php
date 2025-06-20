@@ -3,17 +3,17 @@ if (isset($_SESSION['auth']) == 1) {    //user is logged in
     header('Location: /home');
 }
 
-if ($_SESSION['failed_attempts'] > 1) {    //lockout after 3 failed login attempts
+if ($_SESSION['failed_attempts'] > 2) {    //lockout after 3 failed login attempts
   unset($_SESSION['failed_attempts']);
   header('Location: /lockout');
 }  
 
 if (isset($_SESSION['failed_attempts'])) {
-    echo "This is unsuccessful attempt number " . $_SESSION['failed_attempts'];
+    echo "You will be temporarily locked out after " . (3 - $_SESSION['failed_attempts']) . " more unsuccessful login attempts<br>";
 }
 
 if (isset($_SESSION['no_user'])) {
-    echo "No such user exists";
+    echo "No such user exists<br>";
     unset($_SESSION['no_user']);  
 }
 ?>
